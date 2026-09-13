@@ -38,7 +38,7 @@ include 'includes/header.php';
     <div style="position: absolute; top: -50%; left: -10%; width: 500px; height: 500px; background: radial-gradient(circle, var(--bright-blue) 0%, transparent 70%); opacity: 0.15; border-radius: 50%; animation: pulse 10s infinite alternate;"></div>
     <div style="position: absolute; bottom: -50%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, var(--cyan) 0%, transparent 70%); opacity: 0.1; border-radius: 50%; animation: pulse 12s infinite alternate-reverse;"></div>
 
-    <div class="container reveal-element" style="position: relative; z-index: 1;">
+    <div class="container" style="position: relative; z-index: 1;">
         <h1 class="animate-gradient-text" style="font-size: 5.5rem; font-weight: 900; letter-spacing: -2px; line-height: 1.1; margin-bottom: 1rem;">Lost something?<br>Find it here.</h1>
         <p style="font-size: 1.25rem; margin-bottom: 3rem; color: var(--light-blue); opacity: 0.9;">UniFind helps SLIATE – Kurunegala students and staff report, search, and recover lost belongings around campus.</p>
         

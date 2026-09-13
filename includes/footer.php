@@ -36,7 +36,7 @@
             </div>
         </div>
     </footer>
-    <script src="/lost-found/assets/js/script.js"></script>
+    <script src="<?php echo $base_url; ?>/assets/js/script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             <?php if (isset($success) && !empty($success)): ?>

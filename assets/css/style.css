@@ -93,8 +93,8 @@ h1, h2, h3, h4, h5, h6 {
   background-size: 300% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shineText 5s linear infinite, floatUp 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-  opacity: 0;
+  animation: shineText 5s linear infinite;
+  opacity: 1;
 }
 
 @keyframes shineText {

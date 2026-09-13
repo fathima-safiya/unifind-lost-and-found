@@ -146,5 +146,14 @@ To deploy this project online:
 
 ---
 
+## 👩‍💻 Author
+
+### **Fathima Safiya**
+* **GitHub**: [@fathima-safiya](https://github.com/fathima-safiya)
+* **Email**: [fathima.safiya.tech@gmail.com](mailto:fathima.safiya.tech@gmail.com)
+
+---
+
 ## 📄 License
 This project was developed for educational purposes as an HNDIT software development project. Feel free to use and adapt it for academic demonstrations.
+

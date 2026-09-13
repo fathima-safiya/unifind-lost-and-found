@@ -1,6 +1,7 @@
 <?php
 require_once 'config/database.php';
 require_once 'includes/auth.php';
+require_once 'includes/notification-functions.php';
 
 // Ensure user is logged in
 requireLogin();
@@ -109,6 +110,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ]);
                 
                 if ($inserted) {
+                    $item_id = $pdo->lastInsertId();
+                    create_notification(
+                        $pdo,
+                        $_SESSION['user_id'],
+                        "Report Submitted",
+                        "Your found item report for \"$title\" has been submitted successfully.",
+                        "report_submitted",
+                        $item_id
+                    );
                     // Redirect to My Reports on success
                     header("Location: my-reports.php?success=found");
                     exit();

@@ -1,6 +1,7 @@
 <?php
 require_once '../config/database.php';
 require_once '../includes/auth.php';
+require_once '../includes/notification-functions.php';
 
 requireAdmin();
 
@@ -32,7 +33,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ];
                 if (isset($status_map[$action])) {
                     $new_status = $status_map[$action];
+
+                    // Fetch the item so we can notify its owner
+                    $itemStmt = $pdo->prepare("SELECT user_id, title FROM items WHERE id = ?");
+                    $itemStmt->execute([$item_id]);
+                    $item = $itemStmt->fetch();
+
                     $pdo->prepare("UPDATE items SET status = ? WHERE id = ?")->execute([$new_status, $item_id]);
+
+                    // Fire the appropriate notification
+                    if ($item) {
+                        $item_title = htmlspecialchars($item['title']);
+                        if ($action === 'approve') {
+                            create_notification(
+                                $pdo, $item['user_id'],
+                                'Report Approved',
+                                "Your report for \"$item_title\" has been approved by the administrator.",
+                                'report_approved', $item_id
+                            );
+                        } elseif ($action === 'reject') {
+                            create_notification(
+                                $pdo, $item['user_id'],
+                                'Report Rejected',
+                                "Your report for \"$item_title\" was rejected. Please review the report details.",
+                                'report_rejected', $item_id
+                            );
+                        } elseif ($action === 'returned') {
+                            create_notification(
+                                $pdo, $item['user_id'],
+                                'Item Returned',
+                                "Your reported item \"$item_title\" has been marked as returned.",
+                                'item_returned', $item_id
+                            );
+                        }
+                    }
+
                     header("Location: " . $base_url . "/admin/dashboard.php?success=$action");
                     exit();
                 }

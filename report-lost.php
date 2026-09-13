@@ -1,6 +1,7 @@
 <?php
 require_once 'config/database.php';
 require_once 'includes/auth.php';
+require_once 'includes/notification-functions.php';
 
 // Ensure user is logged in
 requireLogin();
@@ -109,6 +110,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ]);
                 
                 if ($inserted) {
+                    $item_id = $pdo->lastInsertId();
+                    create_notification(
+                        $pdo, 
+                        $_SESSION['user_id'], 
+                        "Report Submitted", 
+                        "Your lost item report for \"$title\" has been submitted successfully.", 
+                        "report_submitted", 
+                        $item_id
+                    );
                     $success = "Your lost item report has been submitted successfully and is pending approval.";
                     // Clear POST data so it doesn't repopulate the form
                     $_POST = array();

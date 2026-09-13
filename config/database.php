@@ -1,13 +1,25 @@
 <?php
-// Database connection settings
-$base_url = '/lost-found';
+// Determine if running locally (XAMPP) or on live hosting
+$http_host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+$is_local  = (strpos($http_host, 'localhost') !== false || strpos($http_host, '127.0.0.1') !== false);
 
-$host     = 'localhost';
-$dbname   = 'unifind_db';
-$username = 'root';
-$password = '';
+if ($is_local) {
+    // Local XAMPP Environment
+    $base_url = '/lost-found';
+    $host     = 'localhost';
+    $dbname   = 'unifind_db';
+    $username = 'root';
+    $password = '';
+} else {
+    // Live Hosting Environment (InfinityFree)
+    $base_url = '';
+    $host     = 'sql302.infinityfree.com';
+    $dbname   = 'if0_42903501_unifind';
+    $username = 'if0_42903501';
+    $password = 'PXyN6VNuxX9M';
+}
 
-// Optional: Load server or local configuration override if present
+// Optional: Custom override if config/local.php exists
 if (file_exists(__DIR__ . '/local.php')) {
     include __DIR__ . '/local.php';
 }

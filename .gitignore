@@ -1,0 +1,14 @@
+# Ignore dynamic user uploads, but keep demo assets
+uploads/edit_*
+
+# Ignore local config overrides (for hosting/production)
+config/local.php
+
+# Ignore temporary/scratch folders
+scratch/
+
+# Operating system and IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
